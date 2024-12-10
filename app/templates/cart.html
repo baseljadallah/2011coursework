@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<br>
+<h1>Your Cart</h1>
+{% if cart_items %}
+  <ul class="list-group">
+    {% for item in cart_items %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <img src="{{ url_for('static', filename=item.img) }}" alt="{{ item.name }}" style="width:50px; height:auto;" class="me-3">
+          <div>
+            <h2 class="h6 mb-1">{{ item.name }}</h2>
+            <p class="mb-0">Size: {{ item.size }} | {{ item.price }}</p>
+          </div>
+        </div>
+        <a href="{{ url_for('views.remove_from_cart', product_id=item.id) }}" class="btn btn-sm btn-outline-danger">X</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Your cart is empty</p>
+{% endif %}
+{% endblock %}

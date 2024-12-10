@@ -1,0 +1,59 @@
+
+{% extends "base.html" %}
+{% block content %}
+<br>
+<h1>{{ product.name }}</h1>
+<img src="{{ url_for('static', filename=product.img) }}" alt="{{ product.alt }}" class="img-fluid mb-3">
+
+<form action="{{ url_for('views.add_to_cart') }}" method="post">
+  <input type="hidden" name= "product_id" value="{{ product.id }}">
+
+  <div class="d-flex align-items-center mb-4">
+    <h2 class="h5 mb-0">Available Sizes</h2>
+    <button type="button" class="btn btn-link p-3" aria-label="Toggle wishlist" data-product-id= "{{ product.id }}">
+      <i class="bi bi-heart" style="font-size:1.5rem; color:black;"></i>
+    </button>
+  </div>
+
+  {% if product.stock > 0 %}
+  <div class="row g-1 mb-4">
+    <!-- radio buttons to choose only one -->
+    <input type="radio" name="size" id="sizeSmall" value="Small" class="d-none" required>
+    <input type="radio" name="size" id="sizeMedium" value="Medium" class="d-none">
+    <input type="radio" name="size" id="sizeLarge" value="Large" class="d-none">
+    <input type="radio" name="size" id="sizeXL" value="X-Large" class="d-none">
+
+    <div class="col-6">
+      <label for="sizeSmall" class="size-label d-block rounded border text-center py-2">Small</label>
+    </div>
+    <div class="col-6">
+      <label for= "sizeMedium" class="size-label d-block rounded border text-center py-2">Medium</label>
+    </div>
+    <div class="col-6">
+      <label for="sizeLarge" class="size-label d-block rounded border text-center py-2">Large</label>
+    </div>
+    <div class="col-6">
+      <label for="sizeXL" class="size-label d-block rounded border text-center py-2">X-Large</label>
+    </div>
+  </div>
+  
+  <p class="mb-4">Stock: {{ product.stock }} remaining</p>
+  <p>{{ product.alt }}</p>
+
+  <div class="mb-5">
+    <button type="submit" class="btn btn-primary me-2">Add to Cart</button>
+
+    <a href="/products" class="btn btn-secondary">Back to Products</a>
+  </div>
+  {% else %}
+    <p class="text-danger">This product is out of stock!</p>
+    <p>{{ product.alt }}</p>
+    <div class="mb-5">
+      <button type= "submit" class="btn btn-primary me-2" disabled>Add to Cart</button>
+      <a href="/products" class="btn btn-secondary">Back to Products</a>
+    </div>
+  {% endif %}
+</form>
+{% endblock %}
+
+

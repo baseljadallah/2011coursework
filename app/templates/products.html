@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<h1>Our Products</h1>
+<br>
+<!-- Row 1 of the products -->
+<div class="row g-4">
+    {% for product in products[0:3] %}
+      <div class="col">
+        <div class="card h-100">
+          <img src="{{ url_for('static', filename=product.img) }}" class="card-img-top" alt="{{ product.alt }}">
+          <div class="card-body">
+            <h2 class="h5 card-title">{{ product.name }}</h2>
+            <p class="card-text">{{ product.price }}</p>
+            {% if product.tags %}
+            <p class="small text-muted">
+              Tags:
+              {% for t in product.tags %}
+                <span class="badge bg-info text-dark">{{ t.name }}</span>
+              {% endfor %}
+            </p>
+          {% endif %}
+            <a class="btn btn-outline-primary" href="{{ url_for('views.product_detail', product_id=product.id) }}">View Details</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  
+  <!-- Row 2 of the products -->
+  <div class="row g-4 mt-4">
+    {% for product in products[3:6] %}
+      <div class="col">
+        <div class="card h-100">
+          <img src="{{ url_for('static', filename=product.img) }}" class="card-img-top" alt="{{ product.alt }}">
+          <div class="card-body">
+            <h2 class="h5 card-title">{{ product.name }}</h2>
+            <p class="card-text">{{ product.price }}</p>
+            {% if product.tags %}
+            <p class="small text-muted">
+              Tags:
+              {% for t in product.tags %}
+                <span class="badge bg-info text-dark">{{ t.name }}</span>
+              {% endfor %}
+            </p>
+          {% endif %}
+            <a class="btn btn-outline-primary" href="{{ url_for('views.product_detail', product_id=product.id) }}">View Details</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  
+  <!-- Row 3 of the products -->
+  <div class="row g-4 mt-4">
+    {% for product in products[6:9] %}
+      <div class="col">
+        <div class="card h-100">
+          <img src="{{ url_for('static', filename=product.img) }}" class="card-img-top" alt="{{ product.alt }}">
+          <div class="card-body">
+            <h2 class="h5 card-title">{{ product.name }}</h2>
+            <p class="card-text">{{ product.price }}</p>
+            {% if product.tags %}
+            <p class="small text-muted">
+              Tags:
+              {% for t in product.tags %}
+                <span class="badge bg-info text-dark">{{ t.name }}</span>
+              {% endfor %}
+            </p>
+          {% endif %}
+            <a class="btn btn-outline-primary" href="{{ url_for('views.product_detail', product_id=product.id) }}">View Details</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+     
+  </div>
+  <br>
+  {% endblock %}
+  

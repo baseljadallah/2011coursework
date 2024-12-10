@@ -1,0 +1,25 @@
+
+body {
+    color: black;
+    background-color: white;
+    font-size: 1rem;
+}
+
+ .size-label {
+    cursor: pointer;
+  }
+  
+  .size-label.selected-size {
+    background-color: grey;
+    border-color: black; 
+    font-weight: bold;
+  }
+  
+.selected-size {
+  background-color: black;
+  color: white; 
+  border-color: black;
+  font-weight: bold;
+}
+
+  
